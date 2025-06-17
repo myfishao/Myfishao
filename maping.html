@@ -1,53 +1,55 @@
 <!DOCTYPE html>
 <html lang="sk">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>MyFishao – Vyber lokalitu</title>
-<style>
-  body {
-    font-family: Arial, sans-serif;
-    text-align: center;
-    background: #e0f0ff;
-    margin: 0; padding: 20px;
-  }
-  h1 {
-    color: #008cff;
-  }
-  #mapImg {
-    max-width: 100%;
-    height: auto;
-    cursor: pointer;
-    border: 3px solid #008cff;
-    border-radius: 10px;
-  }
-  #info {
-    margin-top: 20px;
-    font-size: 1.2rem;
-    color: #0066cc;
-  }
-</style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>MyFishao – Vyber lokalitu</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      text-align: center;
+      background: #e0f0ff;
+      margin: 0;
+      padding: 20px;
+    }
+    h1 {
+      color: #008cff;
+    }
+    #mapImg {
+      max-width: 100%;
+      height: auto;
+      cursor: pointer;
+      border: 3px solid #008cff;
+      border-radius: 10px;
+    }
+    #info {
+      margin-top: 20px;
+      font-size: 1.2rem;
+      color: #0066cc;
+    }
+  </style>
 </head>
 <body>
   <h1>Vyber si lokalitu</h1>
-  <img id="mapImg" src="https://github.com/myfishao/Myfishao/blob/main/maping.jpg.jpg?raw=true" alt="Mapa Fishao" />
+  <!-- Lokálny obrázok moj.jpg musí byť v rovnakom priečinku ako tento HTML súbor -->
+  <img id="mapImg" src="moj.jpg" alt="Mapa Fishao" />
   <div id="info">Klikni na lokalitu na mape</div>
 
-<script>
-  const mapImg = document.getElementById('mapImg');
-  const info = document.getElementById('info');
+  <script>
+    const mapImg = document.getElementById('mapImg');
+    const info = document.getElementById('info');
 
-  mapImg.addEventListener('click', (event) => {
-    const rect = mapImg.getBoundingClientRect();
-    const xPercent = ((event.clientX - rect.left) / rect.width) * 100;
-    const yPercent = ((event.clientY - rect.top) / rect.height) * 100;
+    mapImg.addEventListener('click', (event) => {
+      const rect = mapImg.getBoundingClientRect();
+      const xPercent = ((event.clientX - rect.left) / rect.width) * 100;
+      const yPercent = ((event.clientY - rect.top) / rect.height) * 100;
 
-    if (xPercent > 20 && xPercent < 40 && yPercent > 40 && yPercent < 60) {
-      info.textContent = 'Vybraná lokalita: Pinheira Beach';
-    } else {
-      info.textContent = `Klikol si na pozíciu X: ${xPercent.toFixed(1)}%, Y: ${yPercent.toFixed(1)}%`;
-    }
-  });
-</script>
+      if (xPercent > 20 && xPercent < 40 && yPercent > 40 && yPercent < 60) {
+        info.textContent = 'Vybraná lokalita: Pinheira Beach';
+      } else {
+        info.textContent = `Klikol si na pozíciu X: ${xPercent.toFixed(1)}%, Y: ${yPercent.toFixed(1)}%`;
+      }
+    });
+  </script>
 </body>
 </html>
