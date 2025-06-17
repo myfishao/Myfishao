@@ -1,8 +1,11 @@
-// Import Firebase functions z CDN modulu
-import { initializeApp } from "https://www.gstatic.com/firebasejs/9.22.2/firebase-app.js";
-import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/9.22.2/firebase-auth.js";
+// Import the functions you need from the SDKs you need
+import { initializeApp } from "firebase/app";
+import { getAnalytics } from "firebase/analytics";
+// TODO: Add SDKs for Firebase products that you want to use
+// https://firebase.google.com/docs/web/setup#available-libraries
 
-// Firebase config z tvojho projektu
+// Your web app's Firebase configuration
+// For Firebase JS SDK v7.20.0 and later, measurementId is optional
 const firebaseConfig = {
   apiKey: "AIzaSyAysAn1z2VxMpyL1JFPNyAaPGSjCtlUZ3I",
   authDomain: "myfishao-8a812.firebaseapp.com",
@@ -13,53 +16,6 @@ const firebaseConfig = {
   measurementId: "G-QNEVCF8579"
 };
 
-// Inicializuj Firebase app
+// Initialize Firebase
 const app = initializeApp(firebaseConfig);
-const auth = getAuth(app);
-
-// Získaj referencie na HTML prvky
-const loginBtn = document.getElementById('loginBtn');
-const registerBtn = document.getElementById('registerBtn');
-const message = document.getElementById('message');
-
-loginBtn.addEventListener('click', () => {
-  const email = document.getElementById('username').value.trim();
-  const password = document.getElementById('password').value.trim();
-
-  if (!email || !password) {
-    message.style.color = 'red';
-    message.textContent = 'Prosím, vyplňte email aj heslo.';
-    return;
-  }
-
-  signInWithEmailAndPassword(auth, email, password)
-    .then((userCredential) => {
-      message.style.color = 'green';
-      message.textContent = `Prihlásenie úspešné! Vitajte, ${email}`;
-    })
-    .catch((error) => {
-      message.style.color = 'red';
-      message.textContent = `Chyba: ${error.message}`;
-    });
-});
-
-registerBtn.addEventListener('click', () => {
-  const email = document.getElementById('username').value.trim();
-  const password = document.getElementById('password').value.trim();
-
-  if (!email || !password) {
-    message.style.color = 'red';
-    message.textContent = 'Prosím, vyplňte email aj heslo.';
-    return;
-  }
-
-  createUserWithEmailAndPassword(auth, email, password)
-    .then((userCredential) => {
-      message.style.color = 'green';
-      message.textContent = `Registrácia úspešná! Môžete sa teraz prihlásiť.`;
-    })
-    .catch((error) => {
-      message.style.color = 'red';
-      message.textContent = `Chyba: ${error.message}`;
-    });
-});
+const analytics = getAnalytics(app);
