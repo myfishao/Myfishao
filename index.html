@@ -1,183 +1,174 @@
 <!DOCTYPE html>
 <html lang="sk">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>MyFishao – Prihlásenie</title>
-<style>
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
-body, html {
-  height: 100%;
-  font-family: Arial, sans-serif;
-  background: url('https://github.com/myfishao/Myfishao/blob/main/moj.jpg?raw=true') no-repeat center center fixed;
-  background-size: cover;
-}
-.overlay {
-  position: absolute;
-  top: 0; left: 0;
-  width: 100%; height: 100%;
-  background: rgba(0, 0, 0, 0.4);
-  z-index: 1;
-}
-.login-box {
-  position: relative;
-  z-index: 2;
-  width: 320px;
-  margin: 120px auto;
-  background: rgba(255, 255, 255, 0.9);
-  border-radius: 10px;
-  padding: 30px;
-  text-align: center;
-  box-shadow: 0 0 15px rgba(0,0,0,0.3);
-}
-.login-box h1 {
-  color: #008cff;
-  font-weight: bold;
-  margin-bottom: 15px;
-  font-family: 'Arial Black', Arial, sans-serif;
-  font-size: 36px;
-}
-.login-box h2 {
-  margin-bottom: 20px;
-  color: #333;
-}
-.login-box input {
-  width: 100%;
-  padding: 12px;
-  margin: 10px 0;
-  font-size: 16px;
-  border-radius: 6px;
-  border: 1px solid #ccc;
-}
-.login-box button {
-  width: 100%;
-  padding: 14px;
-  margin-top: 10px;
-  border: none;
-  border-radius: 6px;
-  font-weight: bold;
-  cursor: pointer;
-  color: white;
-  background-color: #008cff;
-  transition: background-color 0.3s;
-}
-.login-box button:hover {
-  background-color: #006dcc;
-}
-.login-box .register-btn {
-  background-color: #00b84d;
-  margin-top: 8px;
-}
-.login-box .register-btn:hover {
-  background-color: #009e3a;
-}
-.footer-contact {
-  position: fixed;
-  bottom: 10px;
-  right: 15px;
-  font-size: 0.85rem;
-  color: white;
-  text-shadow: 1px 1px 3px black;
-  z-index: 2;
-  text-align: right;
-}
-.footer-contact a {
-  color: #a0e0ff;
-  text-decoration: none;
-}
-.footer-contact a:hover {
-  text-decoration: underline;
-}
-</style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>MyFishao – Prihlásenie</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body, html {
+      height: 100%;
+      font-family: Arial, sans-serif;
+      background: url('https://github.com/myfishao/Myfishao/blob/main/moj.jpg?raw=true') no-repeat center center fixed;
+      background-size: cover;
+    }
+    .overlay {
+      position: absolute;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      background: rgba(0, 0, 0, 0.4);
+      z-index: 1;
+    }
+    .login-box {
+      position: relative;
+      z-index: 2;
+      width: 320px;
+      margin: 120px auto;
+      background: rgba(255, 255, 255, 0.9);
+      border-radius: 10px;
+      padding: 30px;
+      text-align: center;
+      box-shadow: 0 0 15px rgba(0,0,0,0.3);
+    }
+    .login-box h1 {
+      color: #008cff;
+      font-weight: bold;
+      margin-bottom: 15px;
+      font-size: 36px;
+    }
+    .login-box h2 {
+      margin-bottom: 20px;
+      color: #333;
+    }
+    .login-box input {
+      width: 100%;
+      padding: 12px;
+      margin: 10px 0;
+      font-size: 16px;
+      border-radius: 6px;
+      border: 1px solid #ccc;
+    }
+    .login-box button {
+      width: 100%;
+      padding: 14px;
+      margin-top: 10px;
+      border: none;
+      border-radius: 6px;
+      font-weight: bold;
+      cursor: pointer;
+      color: white;
+      background-color: #008cff;
+      transition: background-color 0.3s;
+    }
+    .login-box button:hover {
+      background-color: #006dcc;
+    }
+    .login-box .register-btn {
+      background-color: #00b84d;
+      margin-top: 8px;
+    }
+    .login-box .register-btn:hover {
+      background-color: #009e3a;
+    }
+    .footer-contact {
+      position: fixed;
+      bottom: 10px;
+      right: 15px;
+      font-size: 0.85rem;
+      color: white;
+      text-shadow: 1px 1px 3px black;
+      z-index: 2;
+      text-align: right;
+    }
+    .footer-contact a {
+      color: #a0e0ff;
+      text-decoration: none;
+    }
+    .footer-contact a:hover {
+      text-decoration: underline;
+    }
+  </style>
 </head>
 <body>
-<div class="overlay"></div>
+  <div class="overlay"></div>
 
-<div class="login-box">
-  <h1>MY FISHAO</h1>
-  <h2>Prihlásenie</h2>
-  <input type="email" id="email" placeholder="Email" />
-  <input type="password" id="password" placeholder="Heslo" />
-  <button id="loginBtn">Prihlásiť sa</button>
-  <button id="registerBtn" class="register-btn">Registrácia</button>
-  <p id="message" style="color: red; margin-top: 10px;"></p>
-</div>
+  <div class="login-box">
+    <h1>MY FISHAO</h1>
+    <h2>Prihlásenie</h2>
+    <input type="text" id="username" placeholder="Email" />
+    <input type="password" id="password" placeholder="Heslo" />
+    <button id="loginBtn">Prihlásiť sa</button>
+    <button id="registerBtn" class="register-btn">Registrácia</button>
+    <p id="message" style="color: red; margin-top: 10px;"></p>
+  </div>
 
-<div class="footer-contact">
-  Kontakt: <a href="mailto:podpora@myfishao.sk">podpora@myfishao.sk</a><br />
-  <a href="https://facebook.com" target="_blank">Facebook</a> |
-  <a href="https://instagram.com" target="_blank">Instagram</a>
-</div>
+  <div class="footer-contact">
+    Kontakt: <a href="mailto:podpora@myfishao.sk">podpora@myfishao.sk</a><br />
+    <a href="https://facebook.com" target="_blank">Facebook</a> |
+    <a href="https://instagram.com" target="_blank">Instagram</a>
+  </div>
 
-<!-- Firebase JS SDK -->
-<script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
-<script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-auth-compat.js"></script>
+  <!-- Firebase SDK -->
+  <script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
+    import { getAuth, signInWithEmailAndPassword, createUserWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
 
-<script>
-  // Your web app's Firebase configuration
-  const firebaseConfig = {
-    apiKey: "AIzaSyAysAn1z2VxMpyL1JFPNyAaPGSjCtlUZ3I",
-    authDomain: "myfishao-8a812.firebaseapp.com",
-    projectId: "myfishao-8a812",
-    storageBucket: "myfishao-8a812.appspot.com",
-    messagingSenderId: "211218729471",
-    appId: "1:211218729471:web:c1888063112dc6aef7bfca",
-    measurementId: "G-QNEVCF8579"
-  };
+    const firebaseConfig = {
+      apiKey: "AIzaSyAysAn1z2VxMpyL1JFPNyAaPGSjCtlUZ3I",
+      authDomain: "myfishao-8a812.firebaseapp.com",
+      projectId: "myfishao-8a812",
+      storageBucket: "myfishao-8a812.appspot.com",
+      messagingSenderId: "211218729471",
+      appId: "1:211218729471:web:c1888063112dc6aef7bfca",
+      measurementId: "G-QNEVCF8579"
+    };
 
-  // Initialize Firebase
-  firebase.initializeApp(firebaseConfig);
-  const auth = firebase.auth();
+    const app = initializeApp(firebaseConfig);
+    const auth = getAuth(app);
 
-  const loginBtn = document.getElementById('loginBtn');
-  const registerBtn = document.getElementById('registerBtn');
-  const message = document.getElementById('message');
+    const message = document.getElementById("message");
 
-  loginBtn.addEventListener('click', () => {
-    const email = document.getElementById('email').value.trim();
-    const password = document.getElementById('password').value.trim();
+    document.getElementById("loginBtn").addEventListener("click", () => {
+      const email = document.getElementById("username").value.trim();
+      const password = document.getElementById("password").value.trim();
 
-    if (!email || !password) {
-      message.style.color = 'red';
-      message.textContent = 'Prosím, vyplňte email aj heslo.';
-      return;
-    }
+      if (!email || !password) {
+        message.style.color = "red";
+        message.textContent = "Zadaj e-mail aj heslo.";
+        return;
+      }
 
-    auth.signInWithEmailAndPassword(email, password)
-      .then(userCredential => {
-        message.style.color = 'green';
-        message.textContent = `Prihlásenie úspešné! Vitajte, ${userCredential.user.email}`;
-      })
-      .catch(error => {
-        message.style.color = 'red';
-        message.textContent = `Chyba: ${error.message}`;
-      });
-  });
+      signInWithEmailAndPassword(auth, email, password)
+        .then(() => {
+          message.style.color = "green";
+          message.textContent = "Prihlásenie úspešné!";
+        })
+        .catch((error) => {
+          message.style.color = "red";
+          message.textContent = "Chyba: " + error.message;
+        });
+    });
 
-  registerBtn.addEventListener('click', () => {
-    const email = document.getElementById('email').value.trim();
-    const password = document.getElementById('password').value.trim();
+    document.getElementById("registerBtn").addEventListener("click", () => {
+      const email = document.getElementById("username").value.trim();
+      const password = document.getElementById("password").value.trim();
 
-    if (!email || !password) {
-      message.style.color = 'red';
-      message.textContent = 'Prosím, vyplňte email aj heslo.';
-      return;
-    }
+      if (!email || !password) {
+        message.style.color = "red";
+        message.textContent = "Zadaj e-mail aj heslo.";
+        return;
+      }
 
-    auth.createUserWithEmailAndPassword(email, password)
-      .then(userCredential => {
-        message.style.color = 'green';
-        message.textContent = `Registrácia úspešná! Môžete sa teraz prihlásiť, ${userCredential.user.email}`;
-      })
-      .catch(error => {
-        message.style.color = 'red';
-        message.textContent = `Chyba: ${error.message}`;
-      });
-  });
-</script>
+      createUserWithEmailAndPassword(auth, email, password)
+        .then(() => {
+          message.style.color = "green";
+          message.textContent = "Registrácia úspešná! Teraz sa môžeš prihlásiť.";
+        })
+        .catch((error) => {
+          message.style.color = "red";
+          message.textContent = "Chyba: " + error.message;
+        });
+    });
+  </script>
 </body>
 </html>
