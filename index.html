@@ -215,3 +215,53 @@
 
 </body>
 </html>
+<!DOCTYPE html>
+<html lang="sk">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Vyber lokalitu</title>
+<style>
+  body { font-family: Arial, sans-serif; text-align: center; background: #e0f0ff; padding: 20px; }
+  h1 { color: #008cff; }
+  #mapImg {
+    max-width: 100%;
+    height: auto;
+    cursor: pointer;
+    border: 3px solid #008cff;
+    border-radius: 10px;
+  }
+  #info {
+    margin-top: 20px;
+    font-size: 1.2rem;
+    color: #0066cc;
+  }
+</style>
+</head>
+<body>
+
+<h1>Vyber si lokalitu</h1>
+<img id="mapImg" src="https://raw.githubusercontent.com/myfishao/Myfishao/main/moj.jpg" alt="Mapa Fishao" />
+<div id="info">Klikni na lokalitu na mape</div>
+
+<script>
+  const mapImg = document.getElementById('mapImg');
+  const info = document.getElementById('info');
+
+  mapImg.addEventListener('click', (event) => {
+    const rect = mapImg.getBoundingClientRect();
+    const xPercent = ((event.clientX - rect.left) / rect.width) * 100;
+    const yPercent = ((event.clientY - rect.top) / rect.height) * 100;
+
+    // Klik na Pinheira Beach (napr. oblasť 20-40% x a 40-60% y)
+    if (xPercent > 20 && xPercent < 40 && yPercent > 40 && yPercent < 60) {
+      // Presmerovanie na pinheira.html
+      window.location.href = 'pinheira.html';
+    } else {
+      info.textContent = `Klikol si na pozíciu X: ${xPercent.toFixed(1)}%, Y: ${yPercent.toFixed(1)}%`;
+    }
+  });
+</script>
+
+</body>
+</html>
