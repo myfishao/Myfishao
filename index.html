@@ -5,90 +5,21 @@
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>MyFishao – Prihlásenie</title>
 <style>
-  * {
-    margin: 0; padding: 0; box-sizing: border-box;
-  }
-  body, html {
-    height: 100%; font-family: Arial, sans-serif;
-    background: url('https://github.com/myfishao/Myfishao/blob/main/moj.jpg?raw=true') no-repeat center center fixed;
-    background-size: cover;
-  }
-  .overlay {
-    position: absolute; top: 0; left: 0;
-    width: 100%; height: 100%;
-    background: rgba(0, 0, 0, 0.4);
-    z-index: 1;
-  }
-  .login-box {
-    position: relative; z-index: 2;
-    width: 320px; margin: 120px auto;
-    background: rgba(255, 255, 255, 0.9);
-    border-radius: 10px; padding: 30px;
-    text-align: center;
-    box-shadow: 0 0 15px rgba(0,0,0,0.3);
-  }
-  .login-box h1 {
-    color: #008cff;
-    font-weight: bold;
-    margin-bottom: 15px;
-    font-family: 'Arial Black', Arial, sans-serif;
-    font-size: 36px;
-  }
-  .login-box h2 {
-    margin-bottom: 20px;
-    color: #333;
-  }
-  .login-box input {
-    width: 100%;
-    padding: 12px;
-    margin: 10px 0;
-    font-size: 16px;
-    border-radius: 6px;
-    border: 1px solid #ccc;
-  }
-  .login-box button {
-    width: 100%;
-    padding: 14px;
-    margin-top: 10px;
-    border: none;
-    border-radius: 6px;
-    font-weight: bold;
-    cursor: pointer;
-    color: white;
-    background-color: #008cff;
-    transition: background-color 0.3s;
-  }
-  .login-box button:hover {
-    background-color: #006dcc;
-  }
-  .login-box .register-btn {
-    background-color: #00b84d;
-    margin-top: 8px;
-  }
-  .login-box .register-btn:hover {
-    background-color: #009e3a;
-  }
-  .footer-contact {
-    position: fixed;
-    bottom: 10px;
-    right: 15px;
-    font-size: 0.85rem;
-    color: white;
-    text-shadow: 1px 1px 3px black;
-    z-index: 2;
-    text-align: right;
-  }
-  .footer-contact a {
-    color: #a0e0ff;
-    text-decoration: none;
-  }
-  .footer-contact a:hover {
-    text-decoration: underline;
-  }
-  #message {
-    margin-top: 12px;
-    font-weight: bold;
-  }
+/* rovnaké štýly ako predtým */
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body, html { height: 100%; font-family: Arial, sans-serif; background: url('https://github.com/myfishao/Myfishao/blob/main/moj.jpg?raw=true') no-repeat center center fixed; background-size: cover; }
+.overlay { position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.4); z-index: 1; }
+.login-box { position: relative; z-index: 2; width: 320px; margin: 120px auto; background: rgba(255,255,255,0.9); border-radius: 10px; padding: 30px; text-align: center; box-shadow: 0 0 15px rgba(0,0,0,0.3); }
+.login-box h1 { color: #008cff; font-weight: bold; margin-bottom: 15px; font-family: 'Arial Black', Arial, sans-serif; font-size: 36px; }
+.login-box h2 { margin-bottom: 20px; color: #333; }
+.login-box input { width: 100%; padding: 12px; margin: 10px 0; font-size: 16px; border-radius: 6px; border: 1px solid #ccc; }
+.login-box button { width: 100%; padding: 14px; margin-top: 10px; border: none; border-radius: 6px; font-weight: bold; cursor: pointer; color: white; background-color: #008cff; transition: background-color 0.3s; }
+.login-box button:hover { background-color: #006dcc; }
+.login-box .register-btn { background-color: #00b84d; margin-top: 8px; }
+.login-box .register-btn:hover { background-color: #009e3a; }
+.footer-contact { position: fixed; bottom: 10px; right: 15px; font-size: 0.85rem; color: white; text-shadow: 1px 1px 3px black; z-index: 2; text-align: right; }
+.footer-contact a { color: #a0e0ff; text-decoration: none; }
+.footer-contact a:hover { text-decoration: underline; }
 </style>
 </head>
 <body>
@@ -110,12 +41,11 @@
   <a href="https://instagram.com" target="_blank">Instagram</a>
 </div>
 
-<!-- Firebase SDK -->
+<!-- Firebase SDK (compat verzia pre jednoduchšie použitie) -->
 <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
 <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-auth-compat.js"></script>
 
 <script>
-  // Your Firebase config (upravené podľa tvojho projektu)
   const firebaseConfig = {
     apiKey: "AIzaSyAysAn1z2VxMpyL1JFPNyAaPGSjCtlUZ3I",
     authDomain: "myfishao-8a812.firebaseapp.com",
@@ -128,6 +58,7 @@
 
   // Initialize Firebase
   firebase.initializeApp(firebaseConfig);
+
   const auth = firebase.auth();
 
   const loginBtn = document.getElementById('loginBtn');
@@ -146,9 +77,8 @@
 
     auth.signInWithEmailAndPassword(email, password)
       .then(userCredential => {
-        const user = userCredential.user;
         message.style.color = 'green';
-        message.textContent = `Prihlásenie úspešné! Vitajte, ${user.email}`;
+        message.textContent = `Prihlásenie úspešné! Vitajte, ${email}`;
       })
       .catch(error => {
         message.style.color = 'red';
@@ -168,10 +98,15 @@
 
     auth.createUserWithEmailAndPassword(email, password)
       .then(userCredential => {
-        const user = userCredential.user;
         message.style.color = 'green';
-        message.textContent = `Registrácia úspešná! Môžete sa teraz prihlásiť, ${user.email}`;
+        message.textContent = `Registrácia úspešná! Môžete sa teraz prihlásiť, ${email}`;
       })
       .catch(error => {
         message.style.color = 'red';
+        message.textContent = error.message;
+      });
+  });
+</script>
 
+</body>
+</html>
