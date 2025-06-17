@@ -51,6 +51,9 @@
   button:hover {
     background-color: #006dcc;
   }
+  #registerBtn {
+    background-color: #4CAF50;
+  }
   #message {
     margin-top: 10px;
     min-height: 20px;
@@ -77,6 +80,7 @@
   <input type="email" id="email" placeholder="Email" />
   <input type="password" id="password" placeholder="Heslo" />
   <button id="loginBtn">Prihlásiť sa</button>
+  <button id="registerBtn">Registrovať sa</button>
   <p id="message" style="color: red;"></p>
 </div>
 
@@ -114,6 +118,7 @@
   const emailInput = document.getElementById('email');
   const passwordInput = document.getElementById('password');
   const loginBtn = document.getElementById('loginBtn');
+  const registerBtn = document.getElementById('registerBtn');
   const logoutBtn = document.getElementById('logoutBtn');
 
   // Prihlásenie
@@ -129,19 +134,46 @@
 
     auth.signInWithEmailAndPassword(email, password)
       .then(() => {
+        console.log("Prihlásenie úspešné:", email);
         message.textContent = '';
         loginBox.style.display = 'none';
         mapBox.style.display = 'block';
       })
       .catch(error => {
+        console.error("Chyba pri prihlasení:", error);
         message.style.color = 'red';
         message.textContent = 'Chyba: ' + error.message;
+      });
+  });
+
+  // Registrácia
+  registerBtn.addEventListener('click', () => {
+    const email = emailInput.value.trim();
+    const password = passwordInput.value.trim();
+
+    if (!email || !password) {
+      message.style.color = 'red';
+      message.textContent = 'Prosím, vyplňte email aj heslo.';
+      return;
+    }
+
+    auth.createUserWithEmailAndPassword(email, password)
+      .then(() => {
+        console.log("Registrácia úspešná:", email);
+        message.style.color = 'green';
+        message.textContent = 'Úspešne zaregistrovaný! Teraz sa môžeš prihlásiť.';
+      })
+      .catch(error => {
+        console.error("Chyba pri registrácii:", error);
+        message.style.color = 'red';
+        message.textContent = 'Chyba registrácie: ' + error.message;
       });
   });
 
   // Odhlásenie
   logoutBtn.addEventListener('click', () => {
     auth.signOut().then(() => {
+      console.log("Používateľ odhlásený");
       mapBox.style.display = 'none';
       loginBox.style.display = 'block';
       emailInput.value = '';
@@ -150,12 +182,14 @@
     });
   });
 
-  // Automatická kontrola či je používateľ prihlásený (napr. po reload)
+  // Automatická kontrola, či je používateľ prihlásený (napr. po reload)
   auth.onAuthStateChanged(user => {
     if (user) {
+      console.log("Používateľ prihlásený (onAuthStateChanged):", user.email);
       loginBox.style.display = 'none';
       mapBox.style.display = 'block';
     } else {
+      console.log("Používateľ odhlásený (onAuthStateChanged)");
       loginBox.style.display = 'block';
       mapBox.style.display = 'none';
     }
