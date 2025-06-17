@@ -2,65 +2,70 @@
 <html lang="sk">
 <head>
 <meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>MyFishao – Prihlásenie</title>
 <style>
-body, html {
-margin: 0; padding: 0; height: 100%;
-font-family: 'Arial', sans-serif;
-background: url(https://www.google.com/url?sa=i&url=https%3A%2F%2Fkotaku.com%2Fgames%2Ffishao&psig=AOvVaw0qo0-60hnSQMAR05BpMeYk&ust=1750265880892000&source=images&cd=vfe&opi=89978449&ved=0CBQQjRxqFwoTCJiTvZ33-I0DFQAAAAAdAAAAABBj) no-repeat center center fixed;
-background-size: cover;
-color: white;
-overflow: hidden;
+* {
+margin: 0;
+padding: 0;
+box-sizing: border-box;
 }
 
-.login-container {
+body, html {
+height: 100%;
+font-family: 'Arial', sans-serif;
+background: url('https://i.ytimg.com/vi/jnhqwxWwJuA/maxresdefault.jpg') no-repeat center center fixed;
+background-size: cover;
+}
+
+.overlay {
+background: rgba(0, 0, 0, 0.5);
+height: 100%;
+width: 100%;
+position: absolute;
+top: 0;
+left: 0;
+}
+
+.login-box {
 position: relative;
-top: 50%;
-left: 50%;
-transform: translate(-50%, -50%);
-background: rgba(0,0,0,0.6);
+z-index: 2;
+width: 300px;
+margin: 100px auto;
+background: rgba(255, 255, 255, 0.9);
 padding: 30px;
-border-radius: 15px;
-width: 320px;
-box-shadow: 0 0 15px #000;
+border-radius: 10px;
 text-align: center;
 }
 
-.login-container img.logo {
-width: 220px;
+.login-box h2 {
 margin-bottom: 20px;
+color: #333;
 }
 
-.login-container input[type="text"],
-.login-container input[type="password"] {
+.login-box input {
 width: 100%;
 padding: 10px;
 margin: 10px 0;
-border-radius: 6px;
 border: none;
+border-radius: 5px;
 font-size: 16px;
 }
 
-.login-container button {
+.login-box button {
 width: 100%;
 padding: 12px;
-margin-top: 15px;
+margin-top: 10px;
 border: none;
-border-radius: 6px;
+border-radius: 5px;
+background-color: #008cff;
+color: white;
 font-weight: bold;
 cursor: pointer;
 }
 
-.btn-login {
-background-color: #0066cc;
-color: white;
-}
-
-.btn-register {
-background-color: #00aa44;
-color: white;
-margin-top: 8px;
+.login-box button:hover {
+background-color: #006dcc;
 }
 
 .footer-contact {
@@ -68,12 +73,13 @@ position: fixed;
 bottom: 10px;
 right: 15px;
 font-size: 0.85rem;
-color: #ccc;
+color: white;
+text-shadow: 1px 1px 2px black;
 text-align: right;
 }
 
 .footer-contact a {
-color: #a0d8ef;
+color: #a0e0ff;
 text-decoration: none;
 }
 
@@ -83,19 +89,20 @@ text-decoration: underline;
 </style>
 </head>
 <body>
-<div class="login-container">
-<img class="logo" src="https://i.imgur.com/3Q0bTLw.png" alt="MyFishao Logo" />
-<input type="text" placeholder="Meno" />
-<input type="password" placeholder="Heslo" />
-<button class="btn-login">Prihlásiť sa</button>
-<button class="btn-register">Registrácia</button>
+<div class="overlay"></div>
+
+<div class="login-box">
+<h2>Prihlásenie</h2>
+<input type="text" placeholder="Meno">
+<input type="password" placeholder="Heslo">
+<button>Prihlásiť sa</button>
+<button style="background-color: #00b84d;">Registrácia</button>
 </div>
 
 <div class="footer-contact">
-Kontakt: <br />
-<a href="mailto:podpora@myfishao.sk">podpora@myfishao.sk</a><br />
-<a href="https://instagram.com" target="_blank">Instagram</a> |
-<a href="https://facebook.com" target="_blank">Facebook</a>
+Kontakt: <a href="mailto:podpora@myfishao.sk">podpora@myfishao.sk</a><br>
+<a href="https://facebook.com" target="_blank">Facebook</a> |
+<a href="https://instagram.com" target="_blank">Instagram</a>
 </div>
 </body>
 </html>
