@@ -113,10 +113,11 @@ text-decoration: underline;
 <div class="login-box">
 <h1>MY FISHAO</h1>
 <h2>Prihlásenie</h2>
-<input type="text" placeholder="Meno" />
-<input type="password" placeholder="Heslo" />
-<button>Prihlásiť sa</button>
+<input type="text" id="username" placeholder="Meno" />
+<input type="password" id="password" placeholder="Heslo" />
+<button id="loginBtn">Prihlásiť sa</button>
 <button class="register-btn">Registrácia</button>
+<p id="message" style="color: red; margin-top: 10px;"></p>
 </div>
 
 <div class="footer-contact">
@@ -124,5 +125,30 @@ Kontakt: <a href="mailto:podpora@myfishao.sk">podpora@myfishao.sk</a><br />
 <a href="https://facebook.com" target="_blank">Facebook</a> |
 <a href="https://instagram.com" target="_blank">Instagram</a>
 </div>
+
+<script>
+const loginBtn = document.getElementById('loginBtn');
+const message = document.getElementById('message');
+
+loginBtn.addEventListener('click', () => {
+  const username = document.getElementById('username').value.trim();
+  const password = document.getElementById('password').value.trim();
+
+  if (!username || !password) {
+    message.style.color = 'red';
+    message.textContent = 'Prosím, vyplňte meno aj heslo.';
+    return;
+  }
+
+  if (username === 'user' && password === 'heslo123') {
+    message.style.color = 'green';
+    message.textContent = 'Prihlásenie úspešné! Vitajte, ' + username + '!';
+  } else {
+    message.style.color = 'red';
+    message.textContent = 'Neplatné meno alebo heslo.';
+  }
+});
+</script>
 </body>
 </html>
+
