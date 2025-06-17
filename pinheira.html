@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="sk">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Pinheira Beach - MyFishao</title>
+<style>
+  body, html {
+    margin: 0; padding: 0; overflow: hidden; height: 100vh; background: #e0f0ff;
+    font-family: Arial, sans-serif;
+  }
+  #game-container {
+    position: relative;
+    width: 100vw; height: 100vh;
+    background: url('https://raw.githubusercontent.com/myfishao/Myfishao/main/pinheira_beach_map.jpg') no-repeat center center;
+    background-size: cover;
+  }
+  #avatar {
+    position: absolute;
+    width: 50px; height: 50px;
+    background-color: orange;
+    border-radius: 50%;
+    top: 50%; left: 50%;
+    transform: translate(-50%, -50%);
+    transition: top 0.1s, left 0.1s;
+  }
+</style>
+</head>
+<body>
+
+<div id="game-container">
+  <div id="avatar"></div>
+</div>
+
+<script>
+  const avatar = document.getElementById('avatar');
+  const container = document.getElementById('game-container');
+
+  // Počiatočné pozície v px
+  let posX = container.clientWidth / 2;
+  let posY = container.clientHeight / 2;
+
+  // Rýchlosť pohybu v pixeloch
+  const speed = 10;
+
+  function moveAvatar(x, y) {
+    posX += x;
+    posY += y;
+
+    // Obmedz pohyb, aby avatar nevybehol mimo obrazovky
+    posX = Math.max(0, Math.min(posX, container.clientWidth - avatar.clientWidth));
+    posY = Math.max(0, Math.min(posY, container.clientHeight - avatar.clientHeight));
+
+    avatar.style.left = posX + 'px';
+    avatar.style.top = posY + 'px';
+  }
+
+  window.addEventListener('keydown', (e) => {
+    switch(e.key) {
+      case 'ArrowUp':
+        moveAvatar(0, -speed);
+        break;
+      case 'ArrowDown':
+        moveAvatar(0, speed);
+        break;
+      case 'ArrowLeft':
+        moveAvatar(-speed, 0);
+        break;
+      case 'ArrowRight':
+        moveAvatar(speed, 0);
+        break;
+    }
+  });
+</script>
+
+</body>
+</html>
