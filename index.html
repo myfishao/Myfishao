@@ -3,199 +3,182 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>MyFishao – Prihlásenie</title>
+<title>MyFishao – Prihlásenie a Výber lokality</title>
 <style>
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
-
-body, html {
-  height: 100%;
-  font-family: Arial, sans-serif;
-  background: url('https://github.com/myfishao/Myfishao/blob/main/moj.jpg?raw=true') no-repeat center center fixed;
-  background-size: cover;
-}
-
-.overlay {
-  position: absolute;
-  top: 0; left: 0;
-  width: 100%; height: 100%;
-  background: rgba(0, 0, 0, 0.4);
-  z-index: 1;
-}
-
-.login-box {
-  position: relative;
-  z-index: 2;
-  width: 320px;
-  margin: 120px auto;
-  background: rgba(255, 255, 255, 0.9);
-  border-radius: 10px;
-  padding: 30px;
-  text-align: center;
-  box-shadow: 0 0 15px rgba(0,0,0,0.3);
-}
-
-.login-box h1 {
-  color: #008cff;
-  font-weight: bold;
-  margin-bottom: 15px;
-  font-family: 'Arial Black', Arial, sans-serif;
-  font-size: 36px;
-}
-
-.login-box h2 {
-  margin-bottom: 20px;
-  color: #333;
-}
-
-.login-box input {
-  width: 100%;
-  padding: 12px;
-  margin: 10px 0;
-  font-size: 16px;
-  border-radius: 6px;
-  border: 1px solid #ccc;
-}
-
-.login-box button {
-  width: 100%;
-  padding: 14px;
-  margin-top: 10px;
-  border: none;
-  border-radius: 6px;
-  font-weight: bold;
-  cursor: pointer;
-  color: white;
-  background-color: #008cff;
-  transition: background-color 0.3s;
-}
-
-.login-box button:hover {
-  background-color: #006dcc;
-}
-
-.login-box .register-btn {
-  background-color: #00b84d;
-  margin-top: 8px;
-}
-
-.login-box .register-btn:hover {
-  background-color: #009e3a;
-}
-
-.footer-contact {
-  position: fixed;
-  bottom: 10px;
-  right: 15px;
-  font-size: 0.85rem;
-  color: white;
-  text-shadow: 1px 1px 3px black;
-  z-index: 2;
-  text-align: right;
-}
-
-.footer-contact a {
-  color: #a0e0ff;
-  text-decoration: none;
-}
-
-.footer-contact a:hover {
-  text-decoration: underline;
-}
+  * {
+    margin: 0; padding: 0; box-sizing: border-box;
+  }
+  body, html {
+    height: 100%;
+    font-family: Arial, sans-serif;
+    background: #e0f0ff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+  }
+  #login-box, #map-box {
+    width: 320px;
+    background: white;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 0 15px rgba(0,0,0,0.3);
+    text-align: center;
+  }
+  #map-box {
+    display: none;
+  }
+  input {
+    width: 100%;
+    padding: 12px;
+    margin: 10px 0;
+    font-size: 16px;
+    border-radius: 6px;
+    border: 1px solid #ccc;
+  }
+  button {
+    width: 100%;
+    padding: 14px;
+    margin-top: 10px;
+    border: none;
+    border-radius: 6px;
+    font-weight: bold;
+    cursor: pointer;
+    color: white;
+    background-color: #008cff;
+    transition: background-color 0.3s;
+  }
+  button:hover {
+    background-color: #006dcc;
+  }
+  #message {
+    margin-top: 10px;
+    min-height: 20px;
+  }
+  #mapImg {
+    max-width: 100%;
+    height: auto;
+    cursor: pointer;
+    border: 3px solid #008cff;
+    border-radius: 10px;
+  }
+  #info {
+    margin-top: 15px;
+    font-size: 1.1rem;
+    color: #0066cc;
+  }
 </style>
 </head>
 <body>
-<div class="overlay"></div>
 
-<div class="login-box">
+<div id="login-box">
   <h1>MY FISHAO</h1>
   <h2>Prihlásenie</h2>
-  <input type="email" id="username" placeholder="Email" />
+  <input type="email" id="email" placeholder="Email" />
   <input type="password" id="password" placeholder="Heslo" />
   <button id="loginBtn">Prihlásiť sa</button>
-  <button class="register-btn" id="registerBtn">Registrácia</button>
-  <p id="message" style="color: red; margin-top: 10px;"></p>
+  <p id="message" style="color: red;"></p>
 </div>
 
-<div class="footer-contact">
-  Kontakt: <a href="mailto:podpora@myfishao.sk">podpora@myfishao.sk</a><br />
-  <a href="https://facebook.com" target="_blank">Facebook</a> |
-  <a href="https://instagram.com" target="_blank">Instagram</a>
+<div id="map-box">
+  <h1>Vyber si lokalitu</h1>
+  <img id="mapImg" src="https://eaa2e05ec5.cbaul-cdnwnd.com/3ba61d1ecebb0d9a93af139869cd3499/200000001-057a20673d/fishao.jpg?ph=eaa2e05ec5" alt="Mapa Fishao" />
+  <div id="info">Klikni na lokalitu na mape</div>
+  <button id="logoutBtn" style="margin-top:20px; background:#f44336;">Odhlásiť sa</button>
 </div>
 
-<!-- Firebase SDK -->
-<script type="module">
-// Import Firebase SDK
-import { initializeApp } from "https://www.gstatic.com/firebasejs/10.6.1/firebase-app.js";
-import { getAuth, signInWithEmailAndPassword, createUserWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/10.6.1/firebase-auth.js";
+<!-- Firebase JS SDK (via CDN) -->
+<script src="https://www.gstatic.com/firebasejs/9.22.1/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/9.22.1/firebase-auth-compat.js"></script>
 
-// Firebase config
-const firebaseConfig = {
-  apiKey: "AIzaSyAysAn1z2VxMpyL1JFPNyAaPGSjCtlUZ3I",
-  authDomain: "myfishao-8a812.firebaseapp.com",
-  projectId: "myfishao-8a812",
-  storageBucket: "myfishao-8a812.appspot.com",
-  messagingSenderId: "211218729471",
-  appId: "1:211218729471:web:c1888063112dc6aef7bfca",
-  measurementId: "G-QNEVCF8579"
-};
+<script>
+  // Firebase konfigurácia - vlož svoje údaje z Firebase Console
+  const firebaseConfig = {
+    apiKey: "AIzaSyAysAn1z2VxMpyL1JFPNyAaPGSjCtlUZ3I",
+    authDomain: "myfishao-8a812.firebaseapp.com",
+    projectId: "myfishao-8a812",
+    storageBucket: "myfishao-8a812.appspot.com",
+    messagingSenderId: "211218729471",
+    appId: "1:211218729471:web:c1888063112dc6aef7bfca",
+    measurementId: "G-QNEVCF8579"
+  };
 
-// Initialize Firebase
-const app = initializeApp(firebaseConfig);
-const auth = getAuth(app);
+  // Inicializácia Firebase
+  firebase.initializeApp(firebaseConfig);
+  const auth = firebase.auth();
 
-const loginBtn = document.getElementById('loginBtn');
-const registerBtn = document.getElementById('registerBtn');
-const message = document.getElementById('message');
+  const loginBox = document.getElementById('login-box');
+  const mapBox = document.getElementById('map-box');
+  const message = document.getElementById('message');
 
-loginBtn.addEventListener('click', () => {
-  const email = document.getElementById('username').value.trim();
-  const password = document.getElementById('password').value.trim();
+  const emailInput = document.getElementById('email');
+  const passwordInput = document.getElementById('password');
+  const loginBtn = document.getElementById('loginBtn');
+  const logoutBtn = document.getElementById('logoutBtn');
 
-  if (!email || !password) {
-    message.style.color = 'red';
-    message.textContent = 'Prosím, vyplňte email aj heslo.';
-    return;
-  }
+  // Prihlásenie
+  loginBtn.addEventListener('click', () => {
+    const email = emailInput.value.trim();
+    const password = passwordInput.value.trim();
 
-  signInWithEmailAndPassword(auth, email, password)
-    .then((userCredential) => {
-      message.style.color = 'green';
-      message.textContent = 'Prihlásenie úspešné! Presmerovávam...';
-      setTimeout(() => {
-        window.location.href = "mapka.html";
-      }, 1000);
-    })
-    .catch((error) => {
+    if (!email || !password) {
       message.style.color = 'red';
-      message.textContent = 'Neplatné meno alebo heslo.';
+      message.textContent = 'Prosím, vyplňte email aj heslo.';
+      return;
+    }
+
+    auth.signInWithEmailAndPassword(email, password)
+      .then(() => {
+        message.textContent = '';
+        loginBox.style.display = 'none';
+        mapBox.style.display = 'block';
+      })
+      .catch(error => {
+        message.style.color = 'red';
+        message.textContent = 'Chyba: ' + error.message;
+      });
+  });
+
+  // Odhlásenie
+  logoutBtn.addEventListener('click', () => {
+    auth.signOut().then(() => {
+      mapBox.style.display = 'none';
+      loginBox.style.display = 'block';
+      emailInput.value = '';
+      passwordInput.value = '';
+      message.textContent = '';
     });
-});
+  });
 
-registerBtn.addEventListener('click', () => {
-  const email = document.getElementById('username').value.trim();
-  const password = document.getElementById('password').value.trim();
+  // Automatická kontrola či je používateľ prihlásený (napr. po reload)
+  auth.onAuthStateChanged(user => {
+    if (user) {
+      loginBox.style.display = 'none';
+      mapBox.style.display = 'block';
+    } else {
+      loginBox.style.display = 'block';
+      mapBox.style.display = 'none';
+    }
+  });
 
-  if (!email || !password) {
-    message.style.color = 'red';
-    message.textContent = 'Prosím, vyplňte email aj heslo na registráciu.';
-    return;
-  }
+  // Mapa - kliknutie na lokalitu
+  const mapImg = document.getElementById('mapImg');
+  const info = document.getElementById('info');
 
-  createUserWithEmailAndPassword(auth, email, password)
-    .then((userCredential) => {
-      message.style.color = 'green';
-      message.textContent = 'Registrácia úspešná! Môžete sa prihlásiť.';
-    })
-    .catch((error) => {
-      message.style.color = 'red';
-      message.textContent = 'Registrácia zlyhala: ' + error.message;
-    });
-});
+  mapImg.addEventListener('click', (event) => {
+    const rect = mapImg.getBoundingClientRect();
+    const xPercent = ((event.clientX - rect.left) / rect.width) * 100;
+    const yPercent = ((event.clientY - rect.top) / rect.height) * 100;
+
+    // Príklad: klik na Pinheira Beach (x medzi 20-40 %, y medzi 40-60 %)
+    if (xPercent > 20 && xPercent < 40 && yPercent > 40 && yPercent < 60) {
+      info.textContent = 'Vybraná lokalita: Pinheira Beach';
+    } else {
+      info.textContent = `Klikol si na pozíciu X: ${xPercent.toFixed(1)}%, Y: ${yPercent.toFixed(1)}%`;
+    }
+  });
 </script>
 
 </body>
 </html>
+
