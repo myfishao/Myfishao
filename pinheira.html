@@ -3,71 +3,72 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Pinheira Beach - MyFishao</title>
+<title>Pinheira Beach – Mapa</title>
 <style>
-  body, html {
-    margin: 0; padding: 0; overflow: hidden; height: 100vh; background: #e0f0ff;
+  body {
     font-family: Arial, sans-serif;
+    background: #e0f0ff;
+    margin: 0;
+    overflow: hidden;
   }
-  #game-container {
+  #mapContainer {
     position: relative;
-    width: 100vw; 
-    height: 100vh;
-    background: url('https://github.com/myfishao/Myfishao/blob/main/pinheira.jpg?raw=true') no-repeat center center;
-    background-size: cover;
+    width: 800px;
+    height: 600px;
+    margin: 20px auto;
+    border: 3px solid #008cff;
+    border-radius: 10px;
+    background: url('https://raw.githubusercontent.com/myfishao/Myfishao/main/pinheira.jpg') no-repeat center/cover;
   }
   #avatar {
     position: absolute;
-    width: 50px; 
+    width: 50px;
     height: 50px;
-    background-color: orange;
-    border-radius: 50%;
-    top: 50%; 
-    left: 50%;
-    transform: translate(-50%, -50%);
-    transition: top 0.1s, left 0.1s;
+    background: url('https://cdn-icons-png.flaticon.com/512/149/149071.png') no-repeat center/contain;
+    top: 275px;
+    left: 375px;
+    user-select: none;
   }
 </style>
 </head>
 <body>
 
-<div id="game-container">
-  <div id="avatar"></div>
+<h1 style="text-align:center; color:#008cff;">Pinheira Beach – Mapa</h1>
+
+<div id="mapContainer">
+  <div id="avatar" tabindex="0" aria-label="Avatar, použite šípky na pohyb"></div>
 </div>
 
 <script>
   const avatar = document.getElementById('avatar');
-  const container = document.getElementById('game-container');
+  const container = document.getElementById('mapContainer');
 
-  let posX = container.clientWidth / 2;
-  let posY = container.clientHeight / 2;
+  const step = 10; // počet pixelov pohybu na šípku
 
-  const speed = 10;
+  // Nastav zameranie na avatar, aby prijímal klávesové udalosti
+  avatar.focus();
 
-  function moveAvatar(x, y) {
-    posX += x;
-    posY += y;
+  avatar.addEventListener('keydown', (e) => {
+    const rect = avatar.getBoundingClientRect();
+    const containerRect = container.getBoundingClientRect();
 
-    posX = Math.max(0, Math.min(posX, container.clientWidth - avatar.clientWidth));
-    posY = Math.max(0, Math.min(posY, container.clientHeight - avatar.clientHeight));
+    let top = avatar.offsetTop;
+    let left = avatar.offsetLeft;
 
-    avatar.style.left = posX + 'px';
-    avatar.style.top = posY + 'px';
-  }
-
-  window.addEventListener('keydown', (e) => {
     switch(e.key) {
       case 'ArrowUp':
-        moveAvatar(0, -speed);
+        if (top - step >= 0) avatar.style.top = (top - step) + 'px';
         break;
       case 'ArrowDown':
-        moveAvatar(0, speed);
+        if (top + step + avatar.offsetHeight <= container.clientHeight)
+          avatar.style.top = (top + step) + 'px';
         break;
       case 'ArrowLeft':
-        moveAvatar(-speed, 0);
+        if (left - step >= 0) avatar.style.left = (left - step) + 'px';
         break;
       case 'ArrowRight':
-        moveAvatar(speed, 0);
+        if (left + step + avatar.offsetWidth <= container.clientWidth)
+          avatar.style.left = (left + step) + 'px';
         break;
     }
   });
